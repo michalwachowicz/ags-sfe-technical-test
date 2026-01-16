@@ -1,7 +1,14 @@
-import { http, HttpResponse } from 'msw';
-import { faker } from '@faker-js/faker';
+import { http, HttpResponse } from "msw";
+import { faker } from "@faker-js/faker";
 
-const categories = ['home', 'kitchen', 'apparel', 'outdoors', 'office', 'electronics'];
+const categories = [
+  "home",
+  "kitchen",
+  "apparel",
+  "outdoors",
+  "office",
+  "electronics",
+];
 
 /**
  * Seeds a list of products.
@@ -23,9 +30,9 @@ function generateProducts(count: number) {
  * MSW (Mock Service Worker) request handlers.
  */
 export const handlers = [
-  http.get('/api/products', async () => {
+  http.get("/api/products", async () => {
     const data = generateProducts(2000);
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     return HttpResponse.json(data);
   }),
 ];

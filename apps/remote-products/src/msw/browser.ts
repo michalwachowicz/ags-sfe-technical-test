@@ -1,14 +1,14 @@
-import { setupWorker } from 'msw/browser';
-import { handlers } from './handlers';
+import { setupWorker } from "msw/browser";
+import { handlers } from "@/msw/handlers";
 
 export const worker = setupWorker(...handlers);
 
-if (typeof window !== 'undefined') {
-  worker.start({
+export async function startWorker() {
+  await worker.start({
     quiet: true,
     serviceWorker: {
-      url: '/mockServiceWorker.js',
+      url: "/mockServiceWorker.js",
     },
-    onUnhandledRequest: 'bypass',
+    onUnhandledRequest: "bypass",
   });
 }
